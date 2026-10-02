@@ -1,0 +1,15 @@
+{
+	"name": "adfgonature",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9d07d648-6ba4-4b70-bb4f-5d34a65cae08",
+		"tenantId": "c1f68c24-cce5-4873-a125-ad10bacc404b"
+	}
+}

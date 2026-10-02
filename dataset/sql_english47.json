@@ -1,0 +1,100 @@
+{
+	"name": "sql_english47",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "email_address",
+				"type": "nvarchar"
+			},
+			{
+				"name": "mobile",
+				"type": "nvarchar"
+			},
+			{
+				"name": "city",
+				"type": "nvarchar"
+			},
+			{
+				"name": "age",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "registration_date",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "workshop_date",
+				"type": "nvarchar"
+			},
+			{
+				"name": "amount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "utm_source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "utm_medium",
+				"type": "nvarchar"
+			},
+			{
+				"name": "utm_campaign",
+				"type": "nvarchar"
+			},
+			{
+				"name": "utm_content",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_workbook",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_spreadsheet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_sheet",
+				"type": "nvarchar"
+			},
+			{
+				"name": "source_row",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "record_id",
+				"type": "varchar"
+			},
+			{
+				"name": "row_hash",
+				"type": "varchar"
+			},
+			{
+				"name": "ingested_at_utc",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "english47_staging"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

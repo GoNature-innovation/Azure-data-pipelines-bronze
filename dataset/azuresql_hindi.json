@@ -1,0 +1,17 @@
+{
+	"name": "azuresql_hindi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "razorpay_hindi_47"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
