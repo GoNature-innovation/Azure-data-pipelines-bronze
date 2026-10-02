@@ -1,5 +1,5 @@
 {
-	"name": "trigger_5am_Silver_3599",
+	"name": "trigger_12pmm_Silver_3599",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
@@ -23,7 +23,7 @@
 						0
 					],
 					"hours": [
-						5
+						12
 					]
 				}
 			}

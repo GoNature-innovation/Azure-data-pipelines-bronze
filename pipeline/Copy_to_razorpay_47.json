@@ -440,7 +440,7 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "INSERT INTO bronze.razorpay_hindi_47\nSELECT s.*\nFROM bronze.hindi47_staging s\nWHERE NOT EXISTS (\n    SELECT 1\n    FROM bronze.razorpay_hindi_47 t\n    WHERE t.record_id = s.record_id\n);"
+							"text": "INSERT INTO bronze.razorpay_english_47\nSELECT s.*\nFROM bronze.hindi47_staging s\nWHERE NOT EXISTS (\n    SELECT 1\n    FROM bronze.razorpay_hindi_47 t\n    WHERE t.record_id = s.record_id\n);"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
