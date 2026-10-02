@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfgonature"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_src_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase_password": {
+			"value": ""
+		},
+		"AzureSqlDatabase_src_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://storagesrcgonature.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_src_properties_typeProperties_url": {
+			"value": "https://storagesrcgonature.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "gonature-db-server-name.database.windows.net"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "gonature_db"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "gonature-admin"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_server": {
+			"value": "gonature-db-server-name.database.windows.net"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_database": {
+			"value": "gonature_src"
+		},
+		"AzureSqlDatabase_src_properties_typeProperties_userName": {
+			"value": "gonature-admin"
+		}
+	}
+}
