@@ -1,0 +1,70 @@
+{
+	"name": "adls_silver3599",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "razorpay_silver_p3599_src.parquet",
+				"fileSystem": "raw-data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "name",
+				"type": "UTF8"
+			},
+			{
+				"name": "email_address",
+				"type": "UTF8"
+			},
+			{
+				"name": "mobile",
+				"type": "UTF8"
+			},
+			{
+				"name": "city",
+				"type": "UTF8"
+			},
+			{
+				"name": "date",
+				"type": "UTF8"
+			},
+			{
+				"name": "source_workbook",
+				"type": "UTF8"
+			},
+			{
+				"name": "source_spreadsheet",
+				"type": "UTF8"
+			},
+			{
+				"name": "source_sheet",
+				"type": "UTF8"
+			},
+			{
+				"name": "source_row",
+				"type": "INT64"
+			},
+			{
+				"name": "record_id",
+				"type": "UTF8"
+			},
+			{
+				"name": "row_hash",
+				"type": "UTF8"
+			},
+			{
+				"name": "ingested_at_utc",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
