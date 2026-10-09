@@ -1,0 +1,49 @@
+{
+	"name": "DF_English47_Incremental",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "adls_english47",
+						"type": "DatasetReference"
+					},
+					"name": "dataflowAdlsEnglish47"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"parameters{",
+				"     p_last_ingested_time as string",
+				"}",
+				"source(output(",
+				"          name as string,",
+				"          email_address as string,",
+				"          mobile as string,",
+				"          city as string,",
+				"          age as long,",
+				"          registration_date as string,",
+				"          workshop_date as string,",
+				"          amount as double,",
+				"          utm_source as string,",
+				"          utm_medium as string,",
+				"          utm_campaign as string,",
+				"          utm_content as string,",
+				"          source_workbook as string,",
+				"          source_spreadsheet as string,",
+				"          source_sheet as string,",
+				"          source_row as long,",
+				"          record_id as string,",
+				"          row_hash as string,",
+				"          ingested_at_utc as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> dataflowAdlsEnglish47"
+			]
+		}
+	}
+}
