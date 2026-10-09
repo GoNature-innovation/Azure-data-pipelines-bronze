@@ -1,12 +1,12 @@
 {
-	"name": "trigger_12am_hindi_english_47",
+	"name": "trigger_6am Silver_3599",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Copy_to_razorpay_47",
+					"referenceName": "Copy Data - Silver3599",
 					"type": "PipelineReference"
 				}
 			}
@@ -16,14 +16,14 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2026-09-29T11:00:00",
+				"startTime": "2026-10-03T05:02:00",
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
 						0
 					],
 					"hours": [
-						0
+						6
 					]
 				}
 			}
