@@ -1,34 +1,37 @@
 {
-	"name": "DF_English47_Incremental",
+	"name": "DF_Hindi47_Incremental",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "adls_english47",
+						"referenceName": "adls_hindi47",
 						"type": "DatasetReference"
 					},
-					"name": "dataflowAdlsEnglish47"
+					"name": "dataflowAdlshindi47",
+					"description": "Import data from adls_hindi47"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "sql_english47",
+						"referenceName": "adls_hindi47",
 						"type": "DatasetReference"
 					},
-					"name": "sinkEnglish47"
+					"name": "sinkHindi47",
+					"description": "Export data to sql_hindi47"
 				}
 			],
 			"transformations": [
 				{
-					"name": "filterNewRecords"
+					"name": "filterNewRecordshindi",
+					"description": "Filtering rows using expressions on columns 'ingested_at_utc'"
 				}
 			],
 			"scriptLines": [
 				"parameters{",
-				"     p_last_ingested_time as string",
+				"     p_last_ingested_time_hindi as string",
 				"}",
 				"source(output(",
 				"          name as string,",
@@ -54,9 +57,9 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     format: 'parquet') ~> dataflowAdlsEnglish47",
-				"dataflowAdlsEnglish47 filter(toTimestamp(ingested_at_utc, 'yyyy-MM-dd HH:mm:ss.SSSSSS') > toTimestamp($p_last_ingested_time, 'yyyy-MM-dd\\'T\\'HH:mm:ss.SSSSSS')) ~> filterNewRecords",
-				"filterNewRecords sink(allowSchemaDrift: true,",
+				"     format: 'parquet') ~> dataflowAdlshindi47",
+				"dataflowAdlshindi47 filter(toTimestamp(ingested_at_utc, 'yyyy-MM-dd HH:mm:ss.SSSSSS') > toTimestamp($p_last_ingested_time_hindi, 'yyyy-MM-dd\\'T\\'HH:mm:ss.SSSSSS')) ~> filterNewRecordshindi",
+				"filterNewRecordshindi sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          name as string,",
@@ -64,9 +67,9 @@
 				"          mobile as string,",
 				"          city as string,",
 				"          age as long,",
-				"          registration_date as timestamp,",
+				"          registration_date as string,",
 				"          workshop_date as string,",
-				"          amount as decimal(10,2),",
+				"          amount as double,",
 				"          utm_source as string,",
 				"          utm_medium as string,",
 				"          utm_campaign as string,",
@@ -74,19 +77,17 @@
 				"          source_workbook as string,",
 				"          source_spreadsheet as string,",
 				"          source_sheet as string,",
-				"          source_row as integer,",
+				"          source_row as long,",
 				"          record_id as string,",
 				"          row_hash as string,",
-				"          ingested_at_utc as timestamp",
+				"          ingested_at_utc as string",
 				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sinkEnglish47"
+				"     skipDuplicateMapOutputs: true) ~> sinkHindi47"
 			]
 		}
 	}

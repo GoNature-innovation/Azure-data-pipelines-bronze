@@ -292,7 +292,7 @@
 				"type": "Script",
 				"dependsOn": [
 					{
-						"activity": "adls-razorpay-47_english",
+						"activity": "Load_Incremental_English47",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -359,7 +359,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "adls-razorpay-47_english",
+						"activity": "Load_Incremental_hindi47",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -477,6 +477,130 @@
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Lookup_Last_Ingested_English",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT\n    ISNULL(\n        MAX(ingested_at_utc),\n        CAST('1900-01-01' AS datetime2)\n    ) AS last_ingested_time\nFROM bronze.razorpay_english_47;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "sql_razorpay_english47",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Load_Incremental_English47",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Last_Ingested_English",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_English47_Incremental",
+						"type": "DataFlowReference",
+						"parameters": {
+							"p_last_ingested_time": {
+								"value": "'@{activity('Lookup_Last_Ingested_English').output.firstRow.last_ingested_time}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Lookup_Last_Ingested_hindi_copy1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT\n    ISNULL(\n        MAX(ingested_at_utc),\n        CAST('1900-01-01' AS datetime2)\n    ) AS last_ingested_time\nFROM bronze.razorpay_hindi_47;",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "sql_razorpay_hindi_47",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Load_Incremental_hindi47",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Last_Ingested_hindi_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "DF_Hindi47_Incremental",
+						"type": "DataFlowReference",
+						"parameters": {
+							"p_last_ingested_time_hindi": {
+								"value": "'@{activity('Lookup_Last_Ingested_hindi_copy1').output.firstRow.last_ingested_time}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
 				}
 			}
 		],
