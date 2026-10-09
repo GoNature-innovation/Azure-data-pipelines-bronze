@@ -538,7 +538,7 @@
 										"sink": {
 											"name": "name",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -550,7 +550,7 @@
 										"sink": {
 											"name": "email_address",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -562,7 +562,7 @@
 										"sink": {
 											"name": "mobile",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -574,109 +574,23 @@
 										"sink": {
 											"name": "city",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
 										"source": {
-											"name": "age",
-											"type": "Int64",
-											"physicalType": "INT64"
-										},
-										"sink": {
-											"name": "age",
-											"type": "Int64",
-											"physicalType": "bigint"
-										}
-									},
-									{
-										"source": {
-											"name": "registration_date",
+											"name": "date",
 											"type": "String",
 											"physicalType": "UTF8"
 										},
 										"sink": {
-											"name": "registration_date",
+											"name": "date",
 											"type": "DateTime",
 											"physicalType": "datetime2"
 										}
 									},
 									{
 										"source": {
-											"name": "workshop_date",
-											"type": "String",
-											"physicalType": "UTF8"
-										},
-										"sink": {
-											"name": "workshop_date",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "amount",
-											"type": "Double",
-											"physicalType": "DOUBLE"
-										},
-										"sink": {
-											"name": "amount",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 10
-										}
-									},
-									{
-										"source": {
-											"name": "utm_source",
-											"type": "String",
-											"physicalType": "UTF8"
-										},
-										"sink": {
-											"name": "utm_source",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "utm_medium",
-											"type": "String",
-											"physicalType": "UTF8"
-										},
-										"sink": {
-											"name": "utm_medium",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "utm_campaign",
-											"type": "String",
-											"physicalType": "UTF8"
-										},
-										"sink": {
-											"name": "utm_campaign",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "utm_content",
-											"type": "String",
-											"physicalType": "UTF8"
-										},
-										"sink": {
-											"name": "utm_content",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
 											"name": "source_workbook",
 											"type": "String",
 											"physicalType": "UTF8"
@@ -684,7 +598,7 @@
 										"sink": {
 											"name": "source_workbook",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -696,7 +610,7 @@
 										"sink": {
 											"name": "source_spreadsheet",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -708,7 +622,7 @@
 										"sink": {
 											"name": "source_sheet",
 											"type": "String",
-											"physicalType": "nvarchar"
+											"physicalType": "varchar"
 										}
 									},
 									{
@@ -769,86 +683,18 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "adls_english47",
+								"referenceName": "adls_silver3599",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "sql_english47",
+								"referenceName": "sql_Silver3599",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Insert_New_Records",
-						"description": "",
-						"type": "Script",
-						"dependsOn": [
-							{
-								"activity": "ADLS-razorpay-47_english",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"linkedServiceName": {
-							"referenceName": "AzureSqlDatabase",
-							"type": "LinkedServiceReference"
-						},
-						"typeProperties": {
-							"scripts": [
-								{
-									"type": "Query",
-									"text": "INSERT INTO bronze.razorpay_english_47\nSELECT s.*\nFROM bronze.english47_staging s\nWHERE NOT EXISTS (\n    SELECT 1\n    FROM bronze.razorpay_english_47 t\n    WHERE t.record_id = s.record_id\n);"
-								}
-							],
-							"scriptBlockExecutionTimeout": "02:00:00"
-						}
-					},
-					{
-						"name": "Clear_Staging",
-						"description": "",
-						"type": "Script",
-						"dependsOn": [
-							{
-								"activity": "Insert_New_Records",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"linkedServiceName": {
-							"referenceName": "AzureSqlDatabase",
-							"type": "LinkedServiceReference"
-						},
-						"typeProperties": {
-							"scripts": [
-								{
-									"type": "Query",
-									"text": "TRUNCATE TABLE bronze.english47_staging;"
-								}
-							],
-							"scriptBlockExecutionTimeout": "02:00:00"
-						}
 					}
 				],
 				"policy": {
@@ -858,9 +704,8 @@
 				"lastPublishTime": "2026-09-29T10:40:04Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/adls_english47')]",
-				"[concat(variables('factoryId'), '/datasets/sql_english47')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase')]"
+				"[concat(variables('factoryId'), '/datasets/adls_silver3599')]",
+				"[concat(variables('factoryId'), '/datasets/sql_Silver3599')]"
 			]
 		},
 		{
@@ -1586,7 +1431,7 @@
 				"schema": [],
 				"typeProperties": {
 					"schema": "bronze",
-					"table": "silver3599_staging"
+					"table": "razorpay_silver_3599"
 				}
 			},
 			"dependsOn": [
