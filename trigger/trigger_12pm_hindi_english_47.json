@@ -1,5 +1,5 @@
 {
-	"name": "trigger_12am_hindi_english_47",
+	"name": "trigger_12pm_hindi_english_47",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
@@ -23,7 +23,7 @@
 						0
 					],
 					"hours": [
-						0
+						12
 					]
 				}
 			}
